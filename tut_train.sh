@@ -16,7 +16,7 @@ SEQ2='night'
 
 CNN='vgg16'
 
-MODEL_NAME="gp_${CNN}_lstm"
+MODEL_NAME="tut_${CNN}_lstm"
 
 NIMGS=607
 
