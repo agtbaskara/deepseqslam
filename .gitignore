@@ -129,13 +129,13 @@ dmypy.json
 .pyre/
 
 # datasets
-datasets/*/
+datasets/*
 !datasets/.keep
 
 # checkpoints
-checkpoints/*/
+checkpoints/*
 !checkpoints/.keep
 
 # results
-results/*/
+results/*
 !results/.keep
