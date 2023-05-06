@@ -24,6 +24,7 @@ NCLASSES=597
 
 for i in $SEQ1 $SEQ2
 do
+    echo $i
     python run.py val \
     --model_name $MODEL_NAME \
     --data_path $DATA_PATH \

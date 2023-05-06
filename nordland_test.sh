@@ -28,6 +28,7 @@ NCLASSES=28344
 
 for i in $SEQ1 $SEQ2 $SEQ3 $SEQ4
 do
+    echo $i
     python run.py val \
     --model_name $MODEL_NAME \
     --data_path $DATA_PATH \
