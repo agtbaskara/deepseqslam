@@ -4,7 +4,7 @@ DATA_PATH='datasets/tut-backyard/'
 
 SEQ_LENGHT=10
 
-BATCH_SIZE=32
+BATCH_SIZE=16
 
 EPOCHS=200
 
@@ -22,6 +22,10 @@ NIMGS=607
 
 NCLASSES=597
 
+IMG_WIDTH=512
+
+IMG_HEIGHT=256
+
 for i in $SEQ1 $SEQ2
 do
     echo $i
@@ -35,7 +39,8 @@ do
     --val_set $i \
     --cnn_arch $CNN \
     --nimgs $NIMGS \
-    --nclasses $NCLASSES
+    --nclasses $NCLASSES \
+    --img_width $IMG_WIDTH \
+    --img_height $IMG_HEIGHT \
 
 done
-

@@ -60,8 +60,10 @@ parser.add_argument('--seq_len', default=10, type=int,
                     help='sequence length: ds (default: 10)')
 parser.add_argument('--nclasses', default=190, type=int,
                     help='number of classes = nimgs - seq_len (default: 190)')
-parser.add_argument('--img_size', default=224, type=int,
-                    help='image size (default: 224)')
+parser.add_argument('--img_width', default=224, type=int,
+                    help='image width (default: 224)')
+parser.add_argument('--img_height', default=224, type=int,
+                    help='image height (default: 224)')
 
 FLAGS, FIRE_FLAGS = parser.parse_known_args()
 
@@ -155,7 +157,7 @@ class DeepSeqSLAM(nn.Module):
         x = inp[0]
 
 	# Compute global descriptors
-        x = x.view(xs[0]*xs[1],3,FLAGS.img_size,FLAGS.img_size) # 3xHXW
+        x = x.view(xs[0]*xs[1],3,FLAGS.img_height,FLAGS.img_width) # 3xHXW
         x = self.cnn(x)
         x = x.view(xs[0], xs[1], self.feature_dim)
 
@@ -281,7 +283,8 @@ class SequentialDataset(Dataset):
         """
         self.data_dir = data_dir
         self.transform = transform
-        self.img_size = FLAGS.img_size
+        self.img_width = FLAGS.img_width
+        self.img_height = FLAGS.img_height
         self.total_imgs = np.sort(os.listdir(data_dir))
         self.ids = np.linspace(0,FLAGS.nimgs-1,FLAGS.nimgs)
         self.pos = 1000*((np.loadtxt(csv_file, delimiter=',')-0.5)*2)
@@ -334,7 +337,7 @@ class DeepSeqSLAMTrain(object):
         dataset = SequentialDataset(csv_file=os.path.join(FLAGS.data_path, f'gp_pos.csv'),
                                    data_dir=os.path.join(FLAGS.data_path, f'{FLAGS.val_set}'),
                                    transform=torchvision.transforms.Compose([
-                                       torchvision.transforms.Resize((FLAGS.img_size, FLAGS.img_size)),
+                                       torchvision.transforms.Resize((FLAGS.img_height, FLAGS.img_width)),
                                        torchvision.transforms.ToTensor(),
                                        normalize,
                                    ]))
@@ -397,7 +400,7 @@ class DeepSeqSLAMVal(object):
         dataset = SequentialDataset(csv_file=os.path.join(FLAGS.data_path, f'gp_pos.csv'),
                                    data_dir=os.path.join(FLAGS.data_path, f'{FLAGS.val_set}'),
                                    transform=torchvision.transforms.Compose([
-                                       torchvision.transforms.Resize((FLAGS.img_size, FLAGS.img_size)),
+                                       torchvision.transforms.Resize((FLAGS.img_height, FLAGS.img_width)),
                                        torchvision.transforms.ToTensor(),
                                        normalize]))
         data_loader = torch.utils.data.DataLoader(dataset,

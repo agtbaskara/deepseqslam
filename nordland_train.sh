@@ -4,7 +4,7 @@ DATA_PATH='datasets/nordland-sync/'
 
 SEQ_LENGHT=10
 
-BATCH_SIZE=32
+BATCH_SIZE=16
 
 EPOCHS=200
 
@@ -26,6 +26,10 @@ NIMGS=28354
 
 NCLASSES=28344
 
+IMG_WIDTH=512
+
+IMG_HEIGHT=256
+
 python run.py train \
     --model_name $MODEL_NAME \
     --data_path $DATA_PATH \
@@ -36,5 +40,6 @@ python run.py train \
     --val_set $SEQ1 \
     --cnn_arch $CNN \
     --nimgs $NIMGS \
-    --nclasses $NCLASSES
-
+    --nclasses $NCLASSES \
+    --img_width $IMG_WIDTH \
+    --img_height $IMG_HEIGHT \
