@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DATA_PATH='datasets/nordland-sync/'
+DATA_PATH='datasets/nordland-sync-test/'
 
 SEQ_LENGHT=10
 
