@@ -30,7 +30,7 @@ IMG_WIDTH=512
 
 IMG_HEIGHT=256
 
-for i in $SEQ1 $SEQ2
+for i in $SEQ1 $SEQ2 $SEQ3 $SEQ4
 do
     echo $i
     python run.py val \
